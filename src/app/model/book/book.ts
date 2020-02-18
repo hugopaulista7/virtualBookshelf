@@ -42,6 +42,8 @@ export class Book
     if (!books || books === null) {
       books = [];
     }
+
+    this.id = books.length + 1;
     const savingObj: BookInterface = {
       id: this.id,
       title: this.title,
