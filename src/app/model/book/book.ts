@@ -34,7 +34,7 @@ export class Book
   }
 
   getAll(): Array<BookInterface> {
-    return this.storage.get(Book.table);
+    return this.storage.get(Book.table).filter(el => !el.deleted);
   }
 
   save() {
@@ -66,6 +66,12 @@ export class Book
     const index = books.findIndex(el => el.id === book.id);
     books[index] = book;
     this.storage.save(Book.table, books);
+  }
+
+  delete(id) {
+    const book = this.getById(id);
+    book.deleted = true;
+    this.update(book);
   }
 }
 
