@@ -15,9 +15,6 @@ export class Comment implements CommentInterface {
 
   constructor(private storage: StorageService) {}
 
-  getAll() {
-    return this.storage.get(Comment.table).filter(el => !el.deleted);
-  }
 
   create(obj: CommentInterface) {
     let comments = this.getAll();

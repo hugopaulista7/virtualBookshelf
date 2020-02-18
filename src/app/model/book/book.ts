@@ -1,77 +1,22 @@
 import { BookInterface } from './book.interface';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { BaseModel } from '../base.model';
 
-export class Book
- implements BookInterface {
+export class Book extends BaseModel {
 
-  constructor(public storage: StorageService) {
-
-  }
-  static table = 'books';
-
-  id: number;
-  title: string;
-  timestamp: number;
-  description: string;
-  author: string;
-  category: number;
-  deleted: boolean;
-
-
-  fill(obj: BookInterface) {
-    this.id = obj.id;
-    this.title = obj.title;
-    this.description = obj.description;
-    this.author = obj.author;
-    this.category = obj.category;
-    this.deleted = false;
-    this.timestamp = Date.now();
+  constructor(protected storage: StorageService) {
+    super(storage);
   }
 
-  parseDate() {
-    const date = new Date(this.timestamp);
-    return date.toString();
+  protected table = 'books';
+
+  create(bookObj: BookInterface) {
+    super.create(bookObj);
   }
 
-  getAll(): Array<BookInterface> {
-    return this.storage.get(Book.table).filter(el => !el.deleted);
-  }
 
-  save() {
-    let books = this.getAll();
-    if (!books || books === null) {
-      books = [];
-    }
-
-    this.id = books.length + 1;
-    const savingObj: BookInterface = {
-      id: this.id,
-      title: this.title,
-      description: this.description,
-      author: this.author,
-      category: this.category,
-      deleted: this.deleted,
-      timestamp: this.timestamp
-    };
-    books.push(savingObj);
-    this.storage.save(Book.table, books);
-  }
-
-  getById(id) {
-    return this.getAll().find(el => el.id === id);
-  }
-
-  update(book: BookInterface) {
-    const books = this.getAll();
-    const index = books.findIndex(el => el.id === book.id);
-    books[index] = book;
-    this.storage.save(Book.table, books);
-  }
-
-  delete(id) {
-    const book = this.getById(id);
-    book.deleted = true;
-    this.update(book);
+  update(bookObj: BookInterface) {
+    super.update(bookObj);
   }
 }
 
