@@ -33,10 +33,7 @@ export class BookController {
   }
 
   private seedBooks() {
-    defaultBooks.forEach((el: BookInterface) => {
-      console.log(el);
-      this.model.create(el);
-    });
+    this.model.fillBooks(defaultBooks);
   }
 
 
@@ -46,7 +43,6 @@ export class BookController {
 
 
   private orderAlphabetical = (a, b) => {
-    console.log(a, b);
     const upA = a.toUpperCase();
     const upB = b.toUpperCase();
     let compare = 0;
@@ -58,11 +54,19 @@ export class BookController {
     return compare;
   }
 
+  private orderAlphabeticalByAuthor = (a, b) => {
+    return this.orderAlphabetical(a.author, b.author);
+  }
+
   private orderAlphabeticalByTitle = (a, b) => {
     return this.orderAlphabetical(a.title, b.title);
   }
 
   public orderByName() {
     return this.getAllBooksWithoutCategories().sort(this.orderAlphabeticalByTitle);
+  }
+
+  public orderByAuthor() {
+    return this.getAllBooksWithoutCategories().sort(this.orderAlphabeticalByAuthor);
   }
 }

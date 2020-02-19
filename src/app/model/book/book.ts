@@ -19,5 +19,9 @@ export class Book extends BaseModel {
   update(bookObj: BookInterface) {
     super.update(bookObj);
   }
+
+  fillBooks(array) {
+    localStorage.setItem(this.table, JSON.stringify(array));
+  }
 }
 
