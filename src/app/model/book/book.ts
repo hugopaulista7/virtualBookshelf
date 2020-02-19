@@ -11,6 +11,7 @@ export class Book extends BaseModel {
   protected table = 'books';
 
   create(bookObj: BookInterface) {
+    bookObj.deleted = false;
     super.create(bookObj);
   }
 

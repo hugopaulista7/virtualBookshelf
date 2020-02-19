@@ -7,7 +7,7 @@ export abstract class BaseModel {
   constructor(protected storage: StorageService) {}
 
   getAll(): Array<any> {
-    return this.storage.get(this.table).filter(el => !el.deleted);
+    return  this.storage.get(this.table) !== null ?  this.storage.get(this.table).filter(el => !el.deleted) : [];
   }
 
   getCurrentTimestamp(): number {
@@ -16,8 +16,7 @@ export abstract class BaseModel {
 
   create(abstractObj: any) {
     let tableResults = this.getAll();
-
-    if (tableResults.length) {
+    if (tableResults.length <= 0) {
       tableResults = [];
     }
 

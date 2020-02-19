@@ -1,31 +1,20 @@
 import { CommentInterface } from './comment.interface';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { BaseModel } from '../base.model';
 
-export class Comment implements CommentInterface {
-  static table = 'comments';
+export class Comment extends BaseModel {
+  protected table = 'comments';
 
-  id: number;
-  parentId?: number;
-
-  timestamp: number;
-  body: string;
-  author: string;
-  deleted = false;
-
-
-  constructor(private storage: StorageService) {}
+  constructor(protected storage: StorageService) {
+    super(storage);
+  }
 
 
   create(obj: CommentInterface) {
-    let comments = this.getAll();
+   super.create(obj);
+  }
 
-    if (comments.length <= 0) {
-      comments = [];
-    }
-
-    this.id = comments.length + 1;
-
-    // this.
-
+  update(commentObj: CommentInterface) {
+    super.update(commentObj);
   }
 }

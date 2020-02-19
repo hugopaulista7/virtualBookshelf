@@ -1,8 +1,9 @@
 import { CategoryInterface } from './category.interface';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { BaseModel } from '../base.model';
 
-export class Category {
-  static table = 'categories';
+export class Category extends BaseModel {
+  protected table = 'categories';
 
   categories: Array<CategoryInterface> = [
     {
@@ -23,12 +24,15 @@ export class Category {
   ];
 
   constructor(
-    private storage: StorageService
+    protected storage: StorageService
   ) {
+    super(storage);
     this.fillCategories();
   }
 
   fillCategories() {
-    this.storage.save(Category.table, this.categories);
+    this.storage.save(this.table, this.categories);
   }
+
+
 }

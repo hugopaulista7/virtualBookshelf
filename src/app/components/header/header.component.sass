@@ -1,0 +1,67 @@
+@import '../../../variables'
+header
+  display: block
+  width: 100%
+  position: relative
+  height: auto
+  background-color: white
+
+.header-nav
+  display: flex
+  justify-content: space-between
+  align-items: center
+  height: 100%
+  width: 100%
+  &::before
+    content: ''
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 0%
+    background-color: $colorBlue
+    animation-name: grow
+    animation-duration: 2s
+    animation-fill-mode: forwards
+    animation-timing-function: linear
+    height: 2px
+    z-index: 1
+  .logo
+    font-family: 'Expletus Sans'
+    font-weight: 500
+    font-size: 40px
+    margin-left: 40px
+    display: flex
+    flex-direction: column
+    &-blue
+      color: $colorBlue
+
+  a
+    text-decoration: none
+
+  .author
+    margin-right: 40px
+    &:hover
+      background: linear-gradient($colorBlue, $colorBlue) white no-repeat 0 0
+      background-size: 0 100%
+      animation: stripes 0.5s linear 1 forwards
+      span
+        mix-blend-mode: luminosity
+
+  span
+    width: 150px
+    height: 100%
+    color: $colorGrey
+    cursor: pointer
+    background-color: white
+    display: block
+
+
+@keyframes grow
+  0%
+    width: 0%
+  100%
+    width: 100%
+
+@keyframes stripes
+  to
+    background-size: 100% 100%
