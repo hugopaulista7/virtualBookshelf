@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BookController } from 'src/app/controllers/book.controller';
 
 @Component({
@@ -9,12 +9,14 @@ import { BookController } from 'src/app/controllers/book.controller';
 })
 export class BooksListComponent implements OnInit {
 
+  @Input() books = [];
   protected bookController = new BookController();
-  uncategorizedBooks = [];
   constructor() { }
 
   ngOnInit(): void {
-    this.uncategorizedBooks = this.bookController.orderByName();
+    if (this.books.length <= 0 ) {
+      this.books = this.bookController.orderByName();
+    }
   }
 
 }

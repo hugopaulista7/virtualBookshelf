@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -10,9 +11,15 @@ export class BookItemComponent implements OnInit {
 
   @Input() book;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  open() {
+    this.router.navigate(['book/' + this.book.id]);
   }
 
 }

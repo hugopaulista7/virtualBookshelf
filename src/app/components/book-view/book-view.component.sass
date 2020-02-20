@@ -1,0 +1,74 @@
+@import '../../../variables'
+.container
+  padding: 0 75px
+  box-sizing: border-box
+
+.book-view
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+  box-sizing: border-box
+  height: auto
+  min-height: 400px
+  .sidebar
+    display: block
+    width: 30%
+    height: 300px
+    margin: 30px 20px
+    padding: 30px 20px
+    box-sizing: border-box
+    position: relative
+    z-index: 1
+    &::before
+      content: ''
+      border-left: 2px solid $colorBlue
+      border-bottom: 2px solid $colorBlue
+      height: 0
+      width: 0
+      position: absolute
+      animation-duration: 2s
+      animation-name: grow-border
+      animation-fill-mode: forwards
+      animation-timing-function: linear
+      left: 0
+      top: 0
+      z-index: -1
+  .sidebar-group
+    margin-bottom: 10px
+    padding: 20px
+    box-sizing: border-box
+  .actions
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
+    .buttons-row
+      margin: 10px 0
+      button
+        width: 90px
+        background-color: white
+        border: 1px solid $colorBlue
+        border-radius: 5px
+        color: $colorBlue
+        margin: 0 10px
+        height: 30px
+        cursor: pointer
+      .button-delete
+        border-color: $colorRed
+        color: $colorRed
+
+  .content
+    display: block
+    width: 70%
+
+
+@keyframes grow-border
+  0%
+    width: 0
+    height: 0
+  50%
+    height: 300px
+    width: 0
+  100%
+    height: 300px
+    width: 100%

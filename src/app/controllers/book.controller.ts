@@ -24,8 +24,10 @@ export class BookController {
     const categoriesWithBooks = [];
     this.categories.forEach(element => {
       categoriesWithBooks.push({
-        category: {...element},
-        books: books.filter(el => element.id === el.category)
+        ...element,
+        books: books.filter(el => {
+          return element.id === el.category;
+        })
       });
     });
 
@@ -36,11 +38,9 @@ export class BookController {
     this.model.fillBooks(defaultBooks);
   }
 
-
   withoutCategory(obj) {
     return obj.category === undefined;
   }
-
 
   private orderAlphabetical = (a, b) => {
     const upA = a.toUpperCase();
@@ -68,5 +68,24 @@ export class BookController {
 
   public orderByAuthor() {
     return this.getAllBooksWithoutCategories().sort(this.orderAlphabeticalByAuthor);
+  }
+
+  public getById(id) {
+    return this.model.getById(id);
+  }
+
+  public getByCategory(id) {
+    const category = new Category(this.storage).getById(id);
+    // tslint:disable-next-line: triple-equals
+    category.books = this.model.getAll().filter(el => el.category == id);
+    return category;
+  }
+
+  public getCategories() {
+    return new Category(this.storage).getAll();
+  }
+
+  public saveBook(book: BookInterface) {
+    this.model.update(book);
   }
 }

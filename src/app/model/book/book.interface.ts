@@ -4,6 +4,6 @@ export interface BookInterface {
   timestamp: number;
   description: string;
   author: string;
-  category?: number;
+  category?: any;
   deleted: boolean;
 }

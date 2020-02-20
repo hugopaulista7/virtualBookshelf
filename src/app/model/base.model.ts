@@ -27,13 +27,14 @@ export abstract class BaseModel {
   }
 
   getById(id: number) {
-    return this.getAll().find(el => el.id === id);
+    // tslint:disable-next-line: triple-equals
+    return this.getAll().find(el => el.id == id);
   }
 
   update(abstractObj: any) {
     const tableResults = this.getAll();
     tableResults[tableResults.findIndex(el => el.id === abstractObj.id)] = abstractObj;
-    this.storage.save(this.table, abstractObj);
+    this.storage.save(this.table, tableResults);
   }
 
   delete(id: number) {

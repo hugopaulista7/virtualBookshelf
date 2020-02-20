@@ -1,0 +1,62 @@
+@import '../../../../variables'
+
+.modal-bg
+  display: flex
+  justify-content: center
+  align-items: center
+  position: fixed
+  z-index: 99
+  background-color: rgba(#000, 0.7)
+  width: 100vw
+  height: 100vh
+  overflow-x: hidden
+  top: 0
+  left: 0
+  font-family: 'Expletus Sans'
+
+.modal-content
+  width: 500px
+  height: 300px
+  background-color: #fff
+  padding: 30px
+  box-sizing: border-box
+  border-radius: 20px
+  position: relative
+
+.modal-header
+  font-size: 25px
+  border-bottom: 1px solid $colorGrey
+  font-weight: 600
+  padding-bottom: 5px
+  box-sizing: border-box
+
+.modal-text
+  text-align: start
+  padding: 15px 0
+  font-size: 17px
+
+.modal-footer
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  padding: 20px
+  box-sizing: border-box
+  .button
+    background-color: transparent
+    border-width: 1px
+    border-style: solid
+    width: 90px
+    height: 30px
+    margin-left: 20px
+    border-radius: 5px
+    cursor: pointer
+  .button-confirm
+    color: $colorRed
+    border-color: $colorRed
+  .button-cancel
+    color: $colorBlue
+    border-color: $colorBlue
