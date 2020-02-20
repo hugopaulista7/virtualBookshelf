@@ -24,8 +24,10 @@ export class BookController {
     const categoriesWithBooks = [];
     this.categories.forEach(element => {
       categoriesWithBooks.push({
-        category: {...element},
-        books: books.filter(el => element.id === el.category)
+        ...element,
+        books: books.filter(el => {
+          return element.id === el.category;
+        })
       });
     });
 
@@ -33,20 +35,14 @@ export class BookController {
   }
 
   private seedBooks() {
-    defaultBooks.forEach((el: BookInterface) => {
-      console.log(el);
-      this.model.create(el);
-    });
+    this.model.fillBooks(defaultBooks);
   }
-
 
   withoutCategory(obj) {
     return obj.category === undefined;
   }
 
-
   private orderAlphabetical = (a, b) => {
-    console.log(a, b);
     const upA = a.toUpperCase();
     const upB = b.toUpperCase();
     let compare = 0;
@@ -58,11 +54,38 @@ export class BookController {
     return compare;
   }
 
+  private orderAlphabeticalByAuthor = (a, b) => {
+    return this.orderAlphabetical(a.author, b.author);
+  }
+
   private orderAlphabeticalByTitle = (a, b) => {
     return this.orderAlphabetical(a.title, b.title);
   }
 
   public orderByName() {
     return this.getAllBooksWithoutCategories().sort(this.orderAlphabeticalByTitle);
+  }
+
+  public orderByAuthor() {
+    return this.getAllBooksWithoutCategories().sort(this.orderAlphabeticalByAuthor);
+  }
+
+  public getById(id) {
+    return this.model.getById(id);
+  }
+
+  public getByCategory(id) {
+    const category = new Category(this.storage).getById(id);
+    // tslint:disable-next-line: triple-equals
+    category.books = this.model.getAll().filter(el => el.category == id);
+    return category;
+  }
+
+  public getCategories() {
+    return new Category(this.storage).getAll();
+  }
+
+  public saveBook(book: BookInterface) {
+    this.model.update(book);
   }
 }

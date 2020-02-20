@@ -1,0 +1,8 @@
+<app-back-button *ngIf="view"></app-back-button>
+<div class="category-title">
+  <h2>{{category?.name}}</h2>
+</div>
+
+<books-list [books]="category?.books" *ngIf="category?.books.length > 0"></books-list>
+
+<p *ngIf="category?.books.length <= 0">There are no books in this list. Try adding some books to your &ldquo;{{category.name}}'s&rdquo; list</p>

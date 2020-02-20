@@ -12,6 +12,8 @@ header
   align-items: center
   height: 100%
   width: 100%
+  padding: 0 75px
+  box-sizing: border-box
   &::before
     content: ''
     position: absolute
@@ -29,7 +31,6 @@ header
     font-family: 'Expletus Sans'
     font-weight: 500
     font-size: 40px
-    margin-left: 40px
     display: flex
     flex-direction: column
     &-blue
@@ -39,7 +40,6 @@ header
     text-decoration: none
 
   .author
-    margin-right: 40px
     &:hover
       background: linear-gradient($colorBlue, $colorBlue) white no-repeat 0 0
       background-size: 0 100%

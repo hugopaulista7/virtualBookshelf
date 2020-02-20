@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookController } from 'src/app/controllers/book.controller';
+import { CategoryInterface } from 'src/app/model/category/category.interface';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -10,7 +11,7 @@ import { BookController } from 'src/app/controllers/book.controller';
 export class CategoriesListComponent implements OnInit {
 
   protected bookController = new BookController();
-  categories = [];
+  categories: Array<CategoryInterface> = [];
   constructor() { }
 
   ngOnInit(): void {
