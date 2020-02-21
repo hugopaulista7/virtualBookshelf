@@ -1,0 +1,66 @@
+@import '../../../variables'
+
+.book-create
+  border: 1px solid $colorBlue
+  border-radius: 10px
+  width: 720px
+  background-color: white
+.header,
+.footer
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  padding: 20px 30px
+
+.header
+  padding-bottom: 0
+  box-sizing: border-box
+  border-bottom: 1px solid $colorGrey
+
+.footer
+  justify-content: flex-end
+
+.content
+  padding: 20px 30px
+  margin: 10px 0
+
+.form
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+
+.form-control
+  display: flex
+  justify-content: center
+  align-items: flex-start
+  flex-direction: column
+  border: 1px solid $colorBlue
+  border-radius: 10px
+  padding: 10px
+  position: relative
+  width: 75%
+  margin: 10px 0
+  height: 40px
+  label
+    position: absolute
+    display: block
+    background-color: white
+    top: -10px
+    left: 20px
+    padding: 0 5px
+    box-sizing: border-box
+  input,
+  textarea
+    height: 100%
+    width: 100%
+    border: 0px none transparent
+    padding: 0 20px
+    box-sizing: border-box
+    font-family: 'Expletus Sans'!important
+    &:focus
+      outline: none
+  textarea
+    resize: none
+.description-form-control
+  height: 100px

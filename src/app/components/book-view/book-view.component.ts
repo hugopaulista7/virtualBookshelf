@@ -4,6 +4,7 @@ import { BookController } from 'src/app/controllers/book.controller';
 import { BookInterface } from 'src/app/model/book/book.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../shared/modal/modal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-book-view',
@@ -17,6 +18,7 @@ export class BookViewComponent implements OnInit {
   constructor(
     protected acrivatedRoute: ActivatedRoute,
     protected dialog: MatDialog,
+    protected snack: MatSnackBar,
     protected router: Router
   ) { }
 
@@ -41,6 +43,7 @@ export class BookViewComponent implements OnInit {
   public selectCategory(event) {
     this.book.category = event.target.value;
     this.bookController.saveBook(this.book);
+    this.snack.open('Category updated successfuly', 'OK', {duration: 2000});
   }
 
   public getCategoryName() {

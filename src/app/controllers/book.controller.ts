@@ -26,7 +26,8 @@ export class BookController {
       categoriesWithBooks.push({
         ...element,
         books: books.filter(el => {
-          return element.id === el.category;
+          // tslint:disable-next-line: triple-equals
+          return element.id == el.category;
         })
       });
     });
@@ -87,5 +88,9 @@ export class BookController {
 
   public saveBook(book: BookInterface) {
     this.model.update(book);
+  }
+
+  public createBook(book: BookInterface) {
+    this.model.create(book);
   }
 }

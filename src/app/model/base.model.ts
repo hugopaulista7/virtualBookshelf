@@ -6,8 +6,12 @@ export abstract class BaseModel {
 
   constructor(protected storage: StorageService) {}
 
-  getAll(): Array<any> {
-    return  this.storage.get(this.table) !== null ?  this.storage.get(this.table).filter(el => !el.deleted) : [];
+  all(): Array<any> {
+    return this.storage.get(this.table) !== null ?  this.storage.get(this.table) : [];
+  }
+
+  getAll() {
+    return this.all().filter(el => !el.deleted);
   }
 
   getCurrentTimestamp(): number {
@@ -15,24 +19,26 @@ export abstract class BaseModel {
   }
 
   create(abstractObj: any) {
-    let tableResults = this.getAll();
+    const savingObj = {...abstractObj};
+    let tableResults = this.all();
     if (tableResults.length <= 0) {
       tableResults = [];
     }
 
-    abstractObj.id = tableResults.length + 1;
-    abstractObj.timestamp = this.getCurrentTimestamp();
-    tableResults.push(abstractObj);
+    savingObj.id = tableResults.length + 1;
+    savingObj.timestamp = this.getCurrentTimestamp();
+    console.log(savingObj);
+    tableResults.push(savingObj);
     this.storage.save(this.table, tableResults);
   }
 
   getById(id: number) {
     // tslint:disable-next-line: triple-equals
-    return this.getAll().find(el => el.id == id);
+    return this.all().find(el => el.id == id);
   }
 
   update(abstractObj: any) {
-    const tableResults = this.getAll();
+    const tableResults = this.all();
     tableResults[tableResults.findIndex(el => el.id === abstractObj.id)] = abstractObj;
     this.storage.save(this.table, tableResults);
   }

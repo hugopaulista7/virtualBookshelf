@@ -14,8 +14,11 @@ import { CategoryItemComponent } from './components/category-item/category-item.
 import { CategoryViewComponent } from './components/category-view/category-view.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BookCreateComponent } from './components/book-create/book-create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,13 +33,18 @@ import { MatDialogModule } from '@angular/material/dialog';
     CategoryItemComponent,
     CategoryViewComponent,
     BackButtonComponent,
-    ModalComponent
+    ModalComponent,
+    BookCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
