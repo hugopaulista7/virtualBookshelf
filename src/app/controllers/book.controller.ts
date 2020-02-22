@@ -13,7 +13,7 @@ export class BookController {
   constructor() {
     this.model = new Book(this.storage);
     this.categories = new Category(this.storage).getAll();
-    // this.seedBooks();
+    this.seedBooks();
   }
 
   public getAllBooksWithoutCategories() {
@@ -41,9 +41,10 @@ export class BookController {
   }
 
   private seedBooks() {
-    if (this.model.getAll().length <= 0) {
+    if (this.model.getAll().length <= 0 && !this.storage.get('seeded')) {
       this.model.fillBooks([]);
       this.model.fillBooks(defaultBooks);
+      this.storage.save('seeded', true);
     }
   }
 
