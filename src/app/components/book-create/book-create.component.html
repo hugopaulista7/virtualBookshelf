@@ -1,6 +1,6 @@
 <section class="book-create">
   <div class="header">
-    <h2>Create a new book!</h2>
+    <h2>{{title}}</h2>
   </div>
 
   <div class="content">
@@ -21,7 +21,7 @@
   </div>
 
   <div class="footer">
-    <button class="button button-danger">Cancel</button>
+    <button class="button button-danger" (click)="cancel()">Cancel</button>
     <button class="button button-primary" (click)="confirm()">Confirm</button>
   </div>
 </section>

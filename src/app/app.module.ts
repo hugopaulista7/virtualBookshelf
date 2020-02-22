@@ -1,7 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
@@ -14,11 +20,12 @@ import { CategoryItemComponent } from './components/category-item/category-item.
 import { CategoryViewComponent } from './components/category-view/category-view.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
-import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BookCreateComponent } from './components/book-create/book-create.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FloatButtonComponent } from './components/float-button/float-button.component';
+import * as reload from './store/reducers/reload.reducers';
+import { ReloadEffects } from './store/effects/reload.effects';
+import { CommentsListComponent } from './components/comments-list/comments-list.component';
+import { CommentItemComponent } from './components/comment-item/comment-item.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +41,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CategoryViewComponent,
     BackButtonComponent,
     ModalComponent,
-    BookCreateComponent
+    BookCreateComponent,
+    FloatButtonComponent,
+    CommentsListComponent,
+    CommentItemComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +54,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot({reload: reload.reducer}),
+    EffectsModule.forRoot([ReloadEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,8 +16,7 @@ export const rules = {
   ])],
   description: ['', Validators.compose([
     Validators.required,
-    Validators.minLength(10),
-    Validators.maxLength(600)
+    Validators.minLength(10)
   ])],
   category: 0,
   deleted: false

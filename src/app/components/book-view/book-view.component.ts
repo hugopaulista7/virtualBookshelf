@@ -5,6 +5,7 @@ import { BookInterface } from 'src/app/model/book/book.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BookCreateComponent } from '../book-create/book-create.component';
 
 @Component({
   selector: 'app-book-view',
@@ -68,6 +69,15 @@ export class BookViewComponent implements OnInit {
         this.bookController.saveBook(this.book);
         this.router.navigate(['/']);
       }
+    });
+  }
+
+  public edit() {
+    const dialog = this.dialog.open(BookCreateComponent, {
+      data: {book: this.book, title: 'Edit this book'},
+    });
+    dialog.afterClosed().subscribe(() => {
+      this.getBook(this.book.id);
     });
   }
 }

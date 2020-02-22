@@ -1,5 +1,5 @@
 <app-back-button *ngIf="view"></app-back-button>
-<div class="category-title">
+<div class="category-title" [class.view]="view" [class.component]="!view">
   <h2>{{category?.name}}</h2>
 </div>
 

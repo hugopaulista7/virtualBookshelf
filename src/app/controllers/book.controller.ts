@@ -4,6 +4,7 @@ import { Category } from '../model/category/category';
 
 import { defaultBooks } from '../../environments/books';
 import { BookInterface } from '../model/book/book.interface';
+import { Observable, of } from 'rxjs';
 
 export class BookController {
   protected model;
@@ -17,6 +18,10 @@ export class BookController {
 
   public getAllBooksWithoutCategories() {
     return this.model.getAll().filter(this.withoutCategory);
+  }
+
+  public getAllAsObservable(): Observable<any> {
+    return of(this.getAllBooksWithoutCategories());
   }
 
   public getAllBooksWithCategory() {
