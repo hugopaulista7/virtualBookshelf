@@ -4,6 +4,7 @@ import { Category } from '../model/category/category';
 
 import { defaultBooks } from '../../environments/books';
 import { BookInterface } from '../model/book/book.interface';
+import { Observable, of } from 'rxjs';
 
 export class BookController {
   protected model;
@@ -19,6 +20,10 @@ export class BookController {
     return this.model.getAll().filter(this.withoutCategory);
   }
 
+  public getAllAsObservable(): Observable<any> {
+    return of(this.getAllBooksWithoutCategories());
+  }
+
   public getAllBooksWithCategory() {
     const books = this.model.getAll();
     const categoriesWithBooks = [];
@@ -26,7 +31,8 @@ export class BookController {
       categoriesWithBooks.push({
         ...element,
         books: books.filter(el => {
-          return element.id === el.category;
+          // tslint:disable-next-line: triple-equals
+          return element.id == el.category;
         })
       });
     });
@@ -87,5 +93,9 @@ export class BookController {
 
   public saveBook(book: BookInterface) {
     this.model.update(book);
+  }
+
+  public createBook(book: BookInterface) {
+    this.model.create(book);
   }
 }

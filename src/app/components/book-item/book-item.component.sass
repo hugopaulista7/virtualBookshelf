@@ -3,17 +3,22 @@
   cursor: pointer
   position: relative
   margin-bottom: 10px
-  &::before
-    content: ''
-    position: absolute
-    width: 0
-    height: 2px
-    background-color: $colorBlue
-    left: 0
-    bottom: -2px
-    z-index: 1
-    transition: 0.5s ease all
+  .author
+    color: $colorLightBlue
+    position: relative
+    width: fit-content
+    &::before
+      content: ''
+      position: absolute
+      width: 0
+      height: 2px
+      background-color: $colorBlue
+      left: 0
+      bottom: -2px
+      z-index: 1
+      transition: 0.5s ease all
 
   &:hover
-    &::before
-      width: 50%
+    .author
+      &::before
+        width: 100%

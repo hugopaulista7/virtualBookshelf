@@ -1,5 +1,44 @@
 @import './fonts.sass'
-
+@import './variables'
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"
 
 body
   margin: 0
+  font-family: 'Expletus Sans'
+
+
+.button
+  background-color: transparent
+  border-width: 1px
+  border-style: solid
+  width: 90px
+  height: 30px
+  margin-left: 20px
+  border-radius: 5px
+  cursor: pointer
+.button-danger
+  color: $colorRed
+  border-color: $colorRed
+.button-primary
+  color: $colorBlue
+  border-color: $colorBlue
+
+.mat-snack-bar-container
+  background-color: white !important
+  border: 1px solid $colorRed !important
+  color: $colorRed !important
+
+.mat-button
+  font-family: 'Expletus Sans' !important
+  color: $colorBlue
+
+.mat-dialog-container
+  padding: 0 !important
+  border-radius: 10px !important
+
+input,
+button,
+textarea,
+select
+  &:focus
+    outline: none !important

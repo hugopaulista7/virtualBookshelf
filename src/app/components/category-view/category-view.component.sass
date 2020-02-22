@@ -1,1 +1,26 @@
+@import '../../../variables'
+app-back-button
+  margin-left: 90px
+  display: block
+.view
+  padding: 0 90px
+  box-sizing: border-box
+.category-title
+  color: $colorDarkBlue
+.component
+  position: relative
+  width: fit-content
+  &::before
+    content: ''
+    position: absolute
+    bottom: 0
+    left: 0
+    border-bottom: 2px solid $colorDarkBlue
+    width: 0
+    transition: 0.5s ease all
+  &:hover
+    &::before
+      width: 100%
 
+p
+  font-size: 17px
