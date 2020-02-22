@@ -18,7 +18,7 @@
       <div class="sidebar-group">
         <small>Category:</small>
         <h3 class="category-name">
-          {{book?.category === undefined ? '' :  getCategoryName()}}
+          {{getCategoryName()}}
         </h3>
         <select name="category-select" id="categories" (change)="selectCategory($event)">
           <option [selected]="book?.category == undefined" value="0">No Category</option>

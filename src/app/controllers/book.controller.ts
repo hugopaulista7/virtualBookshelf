@@ -21,7 +21,7 @@ export class BookController {
   }
 
   public getAllAsObservable(): Observable<any> {
-    return of(this.getAllBooksWithoutCategories());
+    return of(this.model.getAll());
   }
 
   public getAllBooksWithCategory() {
@@ -41,16 +41,24 @@ export class BookController {
   }
 
   private seedBooks() {
+    this.model.fillBooks([]);
     this.model.fillBooks(defaultBooks);
   }
 
   withoutCategory(obj) {
-    return obj.category === undefined;
+    // tslint:disable-next-line: triple-equals
+    return obj.category === undefined || obj.category == 0;
   }
 
-  private orderAlphabetical = (a, b) => {
-    const upA = a.toUpperCase();
-    const upB = b.toUpperCase();
+  private order = (a, b) => {
+    let upA = a;
+    let upB = b;
+    if (typeof a !== 'number') {
+      upA = a.toUpperCase();
+    }
+    if (typeof b !== 'number') {
+      upB = b.toUpperCase();
+    }
     let compare = 0;
     if (upA > upB) {
       compare = 1;
@@ -60,12 +68,16 @@ export class BookController {
     return compare;
   }
 
-  private orderAlphabeticalByAuthor = (a, b) => {
-    return this.orderAlphabetical(a.author, b.author);
+  public orderAlphabeticalByAuthor = (a, b) => {
+    return this.order(a.author, b.author);
   }
 
-  private orderAlphabeticalByTitle = (a, b) => {
-    return this.orderAlphabetical(a.title, b.title);
+  public orderAlphabeticalByTitle = (a, b) => {
+    return this.order(a.title, b.title);
+  }
+
+  public orderByDate = (a, b) => {
+    return this.order(b.timestamp, a.timestamp);
   }
 
   public orderByName() {

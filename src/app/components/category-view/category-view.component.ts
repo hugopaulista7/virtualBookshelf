@@ -23,7 +23,6 @@ export class CategoryViewComponent implements OnInit {
     if (this.category === undefined) {
       this.view = true;
       this.category = this.bookController.getByCategory(this.activatedRoute.snapshot.paramMap.get('id'));
-      console.log(this.category);
     }
   }
 
