@@ -41,8 +41,10 @@ export class BookController {
   }
 
   private seedBooks() {
-    this.model.fillBooks([]);
-    this.model.fillBooks(defaultBooks);
+    if (this.model.getAll().length <= 0) {
+      this.model.fillBooks([]);
+      this.model.fillBooks(defaultBooks);
+    }
   }
 
   withoutCategory(obj) {
