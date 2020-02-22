@@ -48,8 +48,11 @@ export class BookViewComponent implements OnInit {
   }
 
   public getCategoryName() {
-    // tslint:disable-next-line: triple-equals
-    return this.categories.find(el => el.id == this.book.category).name;
+    if (this.book.category !== 0 && this.book.category !== null && this.book.category !== undefined) {
+      // tslint:disable-next-line: triple-equals
+      return this.categories.find(el => el.id == this.book.category).name;
+    }
+    return '';
   }
 
   public delete() {

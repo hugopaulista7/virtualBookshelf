@@ -24,7 +24,7 @@ export class BookCreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.data.title) {
+    if (this.data !== null && this.data !== undefined) {
       this.title = this.data.title;
       this.updating = true;
       this.fillForm();

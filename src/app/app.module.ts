@@ -23,9 +23,11 @@ import { ModalComponent } from './components/shared/modal/modal.component';
 import { BookCreateComponent } from './components/book-create/book-create.component';
 import { FloatButtonComponent } from './components/float-button/float-button.component';
 import * as reload from './store/reducers/reload.reducers';
+import * as filter from './store/reducers/filter.reducers';
 import { ReloadEffects } from './store/effects/reload.effects';
 import { CommentsListComponent } from './components/comments-list/comments-list.component';
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
+import { FilterEffects } from './store/effects/filter.effects';
 
 @NgModule({
   declarations: [
@@ -55,8 +57,11 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
     ReactiveFormsModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({reload: reload.reducer}),
-    EffectsModule.forRoot([ReloadEffects])
+    StoreModule.forRoot({
+      reload: reload.reducer,
+      filter: filter.reducer
+    }),
+    EffectsModule.forRoot([ReloadEffects, FilterEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
