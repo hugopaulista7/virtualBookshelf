@@ -1,1 +1,36 @@
-<p>comment-item works!</p>
+<div class="comment-item" [class.answer]="comment.parentId">
+  <div class="author">
+    <h4>
+      {{comment.author}}
+    </h4>
+    <div class="buttons">
+      <button class="button button-primary" (click)="toggleEdit()">Edit</button>
+      <button class="button button-danger" (click)="delete()">Delete</button>
+    </div>
+  </div>
+
+  <div class="comment-body">
+    <p class="body">
+      <input type="text" [readonly]="!edit" [(ngModel)]="comment.body" #input>
+      <button class="confirm-button" *ngIf="edit" (click)="update()">
+        <img src="../../../assets/images/send.svg">
+      </button>
+    </p>
+    <p class="date">
+      {{parseDate(comment.timestamp) | date: 'MM/dd/yyyy H:m'}}
+    </p>
+  </div>
+
+  <div class="answers-list">
+    <comment-item *ngFor="let item of answers" [comment]="item"></comment-item>
+  </div>
+
+  <div class="comment-footer" *ngIf="!comment.parentId">
+    <form class="wrapper" [formGroup]="answerForm">
+      <input type="text" placeholder="Leave an answer" formControlName="body">
+      <button class="confirm-button" (click)="answer()">
+        <img src="../../../assets/images/send.svg">
+      </button>
+    </form>
+  </div>
+</div>

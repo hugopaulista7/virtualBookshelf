@@ -1,1 +1,21 @@
-<p>comments-list works!</p>
+<div class="comments-wrapper">
+  <div class="comments-title">
+    <h3>
+      Comments ({{getCommentsLength()}})
+    </h3>
+  </div>
+
+  <div class="comment-create">
+    <form class="wrapper" [formGroup]="form">
+      <label for="comment">Leave a comment! <small>(max: 240)</small></label>
+      <input type="text" name="comment" formControlName="body">
+      <button (click)="createComment()">
+        <img src="../../../assets/images/send.svg">
+      </button>
+    </form>
+  </div>
+
+  <div class="comments-list">
+    <comment-item *ngFor="let comment of comments" [comment]="comment"></comment-item>
+  </div>
+</div>

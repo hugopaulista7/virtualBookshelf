@@ -9,7 +9,6 @@ export class Comment extends BaseModel {
     super(storage);
   }
 
-
   create(obj: CommentInterface) {
    super.create(obj);
   }

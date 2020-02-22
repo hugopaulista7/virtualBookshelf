@@ -24,10 +24,12 @@ import { BookCreateComponent } from './components/book-create/book-create.compon
 import { FloatButtonComponent } from './components/float-button/float-button.component';
 import * as reload from './store/reducers/reload.reducers';
 import * as filter from './store/reducers/filter.reducers';
+import * as comment from './store/reducers/comments.reducers';
 import { ReloadEffects } from './store/effects/reload.effects';
 import { CommentsListComponent } from './components/comments-list/comments-list.component';
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
 import { FilterEffects } from './store/effects/filter.effects';
+import { CommentsEffects } from './store/effects/comments.effects';
 
 @NgModule({
   declarations: [
@@ -59,9 +61,10 @@ import { FilterEffects } from './store/effects/filter.effects';
     BrowserAnimationsModule,
     StoreModule.forRoot({
       reload: reload.reducer,
-      filter: filter.reducer
+      filter: filter.reducer,
+      comment: comment.reducer
     }),
-    EffectsModule.forRoot([ReloadEffects, FilterEffects])
+    EffectsModule.forRoot([ReloadEffects, FilterEffects, CommentsEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

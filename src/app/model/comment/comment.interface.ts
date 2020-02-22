@@ -5,4 +5,5 @@ export interface CommentInterface {
   body: string;
   author: string;
   deleted: boolean;
+  bookId: number;
 }

@@ -1,0 +1,77 @@
+@import '../../../variables'
+
+.comment-item
+  width: 100%
+  padding: 20px 50px
+  box-sizing: border-box
+  border-bottom: 1px solid $colorGrey
+
+.author
+  color: $colorBlue
+  font-size: 18px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  h4
+    width: 60%
+
+.comment-body
+  padding: 0 30px
+  box-sizing: border-box
+  .body
+    display: flex
+    justify-content: space-between
+    align-items: center
+    input
+      width: 90%
+      background-color: transparent
+      border: none
+      font-family: 'Expletus Sans'
+      font-size: 15px
+      padding: 10px 0
+      &:focus
+        border-bottom: 2px solid $colorBlue
+  .date
+    font-size: 13px
+    color: $colorGrey
+
+.confirm-button
+  width: 35px
+  height: 35px
+  background-color: $colorBlue
+  border-radius: 40px
+  display: flex
+  justify-content: center
+  align-items: center
+  cursor: pointer
+  color: white
+  border: none
+  img
+    width: 15px
+
+.comment-footer
+  width: 100%
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  .wrapper
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 60%
+    height: 50px
+    border: 2px solid $colorBlue
+    border-radius: 10px
+    padding: 10px 10px
+    box-sizing: border-box
+    input
+      width: 90%
+      border: none
+      height: 100%
+      background-color: transparent
+      border-radius: 10px
+      display: block
+    //   height: 100%
+
+.answer
+  border-bottom: none

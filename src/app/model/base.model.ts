@@ -27,7 +27,6 @@ export abstract class BaseModel {
 
     savingObj.id = tableResults.length + 1;
     savingObj.timestamp = this.getCurrentTimestamp();
-    console.log(savingObj);
     tableResults.push(savingObj);
     this.storage.save(this.table, tableResults);
   }
