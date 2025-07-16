@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "build": "ng build",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider ng serve",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider ng serve",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider ng build",
+    "serve": "node server.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
